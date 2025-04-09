@@ -1,0 +1,31 @@
+{
+	"name": "Debian",
+	"image": "mcr.microsoft.com/devcontainers/base:bookworm",
+	"features": {
+		"ghcr.io/devcontainers/features/azure-cli:1": {
+			"extensions": [
+				"azure-devops"
+			]
+		},
+		"ghcr.io/devcontainers/features/github-cli:1": {},
+		"ghcr.io/devcontainers/features/powershell:1": {},
+		"ghcr.io/devcontainers/features/terraform:1": {
+			"tflint": "latest",
+			"terragrunt": "latest",
+			"installTFsec": true,
+			"installTerraformDocs": true
+		}
+	},
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"ms-azure-devops.azure-pipelines",
+				"ms-azuretools.vscode-azurecli",
+				"hashicorp.terraform",
+				"azapi-vscode.azapi",
+				"yzhang.markdown-all-in-one",
+				"mhutchie.git-graph"
+			]
+		}
+	}
+}
