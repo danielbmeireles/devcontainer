@@ -1,6 +1,28 @@
 {
 	"name": "Debian",
 	"image": "mcr.microsoft.com/devcontainers/base:bookworm",
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"bridgecrew.checkov",
+				"hashicorp.terraform",
+				"mhutchie.git-graph",
+				"ms-azure-devops.azure-pipelines",
+				"ms-azuretools.vscode-azurecli",
+				"ms-azuretools.vscode-azureterraform",
+				"ms-python.python",
+				"ms-vscode.powershell",
+				"redhat.vscode-yaml",
+				"waderyan.gitblame",
+				"yzhang.markdown-all-in-one"
+			],
+			"settings": {
+				"git.autofetch": true,
+				"git.confirmSync": false,
+				"git.enableSmartCommit": true
+			}
+		}
+	},
 	"features": {
 		"ghcr.io/devcontainers/features/azure-cli:1": {
 			"extensions": [
@@ -9,23 +31,20 @@
 		},
 		"ghcr.io/devcontainers/features/github-cli:1": {},
 		"ghcr.io/devcontainers/features/powershell:1": {},
+		"ghcr.io/devcontainers/features/python:1": {
+			"version": "latest"
+		},
 		"ghcr.io/devcontainers/features/terraform:1": {
-			"tflint": "latest",
-			"terragrunt": "latest",
 			"installTFsec": true,
-			"installTerraformDocs": true
-		}
+			"installTerraformDocs": true,
+			"terragrunt": "latest",
+			"tflint": "latest"
+		},
+		"ghcr.io/meaningful-ooo/devcontainer-features/homebrew:2": {}
 	},
-	"customizations": {
-		"vscode": {
-			"extensions": [
-				"ms-azure-devops.azure-pipelines",
-				"ms-azuretools.vscode-azurecli",
-				"hashicorp.terraform",
-				"azapi-vscode.azapi",
-				"yzhang.markdown-all-in-one",
-				"mhutchie.git-graph"
-			]
-		}
-	}
+	"mounts": [
+		"source=${localEnv:HOME}/.gitconfig,target=/home/vscode/.gitconfig,readonly,type=bind,consistency=cached",
+		"source=${localEnv:HOME}/.ssh,target=/home/vscode/.ssh,readonly,type=bind,consistency=cached"
+	],
+	"postCreateCommand": "bash .devcontainer/setup.sh"
 }
